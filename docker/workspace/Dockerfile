@@ -2,6 +2,7 @@ FROM debian:bullseye
 
 ARG GO_VERSION=1.19.1
 ARG NODE_VERSION=16.15.0
+ARG PB_VERSION=21.6
 ARG SRC_MODULE=github.com/mkaiho/go-grpc-sample2
 
 RUN apt-get update -y && apt-get install -y \
@@ -16,6 +17,10 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
   && chmod +x direnv \
   && mv direnv /usr/local/bin/ \
   && echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+RUN curl -LO "https://github.com/protocolbuffers/protobuf/releases/download/v${PB_VERSION}/protoc-${PB_VERSION}-linux-x86_64.zip" \
+  && unzip protoc-${PB_VERSION}-linux-x86_64.zip -d ${HOME}/.local \
+  && echo 'export PATH="$PATH:${HOME}/.local/bin"' >> ~/.bash_profile \
+  && . ~/.bash_profile
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
 && echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
