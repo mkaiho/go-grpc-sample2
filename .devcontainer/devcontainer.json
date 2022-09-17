@@ -1,0 +1,8 @@
+{
+  "dockerComposeFile": "../docker-compose.yaml",
+  "service": "workspace",
+  "workspaceFolder": "/go/src/github.com/mkaiho/go-grpc-sample2",
+  "extensions": [
+    "golang.go"
+  ]
+}

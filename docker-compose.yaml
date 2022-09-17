@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: ./docker/workspace/Dockerfile
+    container_name: go-grpc-sample2-workspace
+    tty: true
+    volumes:
+      - .:/go/src/github.com/mkaiho/go-grpc-sample2
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /go/src/github.com/mkaiho/go-grpc-sample2
+    ports:
+      - 3000:3000
