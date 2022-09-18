@@ -3,6 +3,7 @@
   "service": "workspace",
   "workspaceFolder": "/go/src/github.com/mkaiho/go-grpc-sample2",
   "extensions": [
-    "golang.go"
+    "golang.go",
+    "zxh404.vscode-proto3"
   ]
 }
