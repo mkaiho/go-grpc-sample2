@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "github.com/mkaiho/go-grpc-sample2/proto";
+
+package proto;
+
+service TodoManager {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+}
+
+message Todo {
+  string name = 1;
+}
+message CreateRequest {
+  Todo todo = 1;
+}
+message CreateResponse {
+  Todo todo = 1;
+}
