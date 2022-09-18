@@ -6,7 +6,7 @@ ARG PB_VERSION=21.6
 ARG SRC_MODULE=github.com/mkaiho/go-grpc-sample2
 
 RUN apt-get update -y && apt-get install -y \
-  curl gcc make git zip unzip jq openssl ca-certificates gnupg lsb-release
+  curl gcc make git zip unzip jq openssl ca-certificates gnupg lsb-release clang-format
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
   && unzip awscliv2.zip \

@@ -1,0 +1,7 @@
+{
+  "clang-format.language.proto.style": "Google",
+  "[proto3]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnSave": true
+  }
+}
