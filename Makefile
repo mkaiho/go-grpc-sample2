@@ -50,8 +50,8 @@ clean:
 
 .PHONY: gen-go-proto
 gen-go-proto:
-	protoc --go_out=./infrastructure/proto \
+	protoc --go_out=./infrastructure \
 		--go_opt=paths=source_relative \
-		--go-grpc_out=./infrastructure/proto \
+		--go-grpc_out=./infrastructure \
 		--go-grpc_opt=paths=source_relative \
 		./**/*.proto
