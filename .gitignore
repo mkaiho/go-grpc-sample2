@@ -16,6 +16,9 @@ test-results/
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+_deployments/bin/
+_deployments/zip/
+
 .envrc
 
 .ssh/
