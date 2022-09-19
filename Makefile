@@ -1,23 +1,22 @@
 ROOT_PACKAGE:=github.com/mkaiho/go-grpc-sample2
 BIN_DIR:=_deployments/bin
-SRC_DIR:=$(shell go list ./cmd/...)
-BINARIES:=$(SRC_DIR:$(ROOT_PACKAGE)/%=$(BIN_DIR)/%)
+SRC_DIR:=$(shell go list ./internal/cmd/...)
+BINARIES:=$(SRC_DIR:$(ROOT_PACKAGE)/internal/cmd/%=$(BIN_DIR)/%)
 ARCHIVE_DIR:=_deployments/zip
-ARCHIVES:=$(SRC_DIR:$(ROOT_PACKAGE)/%=$(ARCHIVE_DIR)/%)
+ARCHIVES:=$(SRC_DIR:$(ROOT_PACKAGE)/internal/cmd/%=$(ARCHIVE_DIR)/%)
 
 .PHONY: build
 build: clean $(BINARIES)
 
 $(BINARIES):
-	go build -o $@ $(@:$(BIN_DIR)/%=$(ROOT_PACKAGE)/%)
+	go build -o $@ $(@:$(BIN_DIR)/%=$(ROOT_PACKAGE)/internal/cmd/%)
 
 .PHONY: archive
 archive: $(ARCHIVES)
 
 $(ARCHIVES):$(BINARIES)
 	@test -d $(ARCHIVE_DIR) || mkdir $(ARCHIVE_DIR)
-	@test -d $(ARCHIVE_DIR)/cmd || mkdir $(ARCHIVE_DIR)/cmd
-	@zip -j $@.zip $(@:$(ARCHIVE_DIR)/%=$(BIN_DIR)/%)
+	zip -j $@.zip $(@:$(ARCHIVE_DIR)/%=$(BIN_DIR)/%)
 
 .PHONY: dev-deps
 dev-deps:
@@ -50,8 +49,8 @@ clean:
 
 .PHONY: gen-go-proto
 gen-go-proto:
-	protoc --go_out=./infrastructure \
+	protoc --go_out=. \
 		--go_opt=paths=source_relative \
-		--go-grpc_out=./infrastructure \
+		--go-grpc_out=. \
 		--go-grpc_opt=paths=source_relative \
 		./**/*.proto
